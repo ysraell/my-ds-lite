@@ -1,4 +1,4 @@
-# My-DS Lite
+# My-DS
 My data science Docker image.
 
 [![Python 3.7](https://img.shields.io/badge/Python-3.7-gree.svg)](https://www.python.org/downloads/release/python-370/)
@@ -12,9 +12,75 @@ My data science Docker image.
 
 Base Docker image: `python`
 
+## Settings:
+Check `settings.yml` first!
+
+## Building:
+To build the image:
+
+```bash
+$ ./build
+```
+
+## Start:
+To start the image and set up the servers:
+
+```bash
+$ ./start
+```
+- Every time tha you run this command, will create a new container!! Run it once (always as possible).
+
+Wait for get the JupterLab URL access.
+
+## JupterLab URL:
+To get the JupterLab URL access:
+
+```bash
+$ ./list_jupyter
+```
+
+## Stopping:
+To stop the container:
+
+```bash
+$ ./stop
+```
+
+## Load previous container:
+To load a container already stared before:
+
+```bash
+$ ./load
+```
+
+## REmove previous container:
+To remove a container already stared before:
+
+```bash
+$ ./rm_container
+```
+
+## Run a shell in the running container:
+To enter into container:
+
+```bash
+$ ./bash
+```
+
+or
+
+```bash
+$ ./zsh
+```
+
+
 ## Run with *Docker Compose*:
 
-in Linux:
+in Linux...
+
+```bash
+$ docker-compose -f docker-compose.yml up
+```
 
 ```bash
 $ docker-compose -f docker-compose.yml up
@@ -34,52 +100,6 @@ Alter pulled the image, it will return the link for JupyterLab with a token, lik
 workstation_1 | or http://127.0.0.1:8888/lab?token=2ee0f77e160ce90db827324b66a516c3b26e04e5c7a5e511
 ```
 
-## Settings:
-Check `settings.yml` first!
-
-## Building:
-To build the image:
-
-```bash
-$ ./scripts/build.sh
-```
-
-## Start:
-To start the image and set up the servers:
-
-```bash
-$ ./scripts/start.sh
-```
-
-Wait for get the JupterLab URL access.
-
-## JupterLab URL:
-To get the JupterLab URL access:
-
-```bash
-$ ./scripts/list_jupyter.sh
-```
-
-## Stopping:
-To stop the container:
-
-```bash
-$ ./scripts/stop.sh
-```
-
-## Run a shell in the running container:
-To enter into container:
-
-```bash
-$ ./scripts/bash.sh
-```
-
-or
-
-```bash
-$ ./scripts/zsh.sh
-```
-
 ## Run Stremalit apps:
 
 ```bash
@@ -97,11 +117,5 @@ $ for a in `ls  scripts/*.sh`;
         ln -s $a `echo $a |cut -d '/' -f 2 |cut -d '.' -f 1`
     done
 ```
-
-### TODO:
-
-- Use Poetry insted self management based on `settings.yml`.
-    - Dev. script for add a package python in running container directly from host's shell.
-- Reuse container created, store the name or give a name, changing the `start.sh`/`stop.sh` and add a new command `reset.sh` to recreate the container.
 
 `ψυχήδηλειν`

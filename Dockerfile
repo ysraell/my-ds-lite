@@ -21,10 +21,10 @@ RUN apt-get update && apt-get install -y \
   && rm -rf /var/cache/apt && rm -rf /var/lib/apt/lists/*
 
 # Jupyter process and Node.js 14.
-RUN curl -sL https://deb.nodesource.com/setup_14.x  | bash - && \
-  apt-get install -y nodejs && \
-  rm -rf /var/cache/apt && \
-  rm -rf /var/lib/apt/lists/*
+# RUN curl -sL https://deb.nodesource.com/setup_14.x  | bash - && \
+#   apt-get install -y nodejs && \
+#   rm -rf /var/cache/apt && \
+#   rm -rf /var/lib/apt/lists/*
 
 # Oh-My-Z Shell
 ENV TERM xterm
@@ -41,8 +41,7 @@ RUN jupyter labextension install \
   jupyterlab_templates \
   ipytree \
   @jupyter-widgets/jupyterlab-manager \
-  jupyter-matplotlib \
-  js || cat /tmp/jupyterlab-debug-*.log
+  jupyter-matplotlib || cat /tmp/jupyterlab-debug-*.log
 RUN jupyter serverextension enable --py jupyterlab_templates
 RUN jupyter nbextension enable --py --sys-prefix ipysankeywidget
 RUN jupyter nbextension enable --py --sys-prefix widgetsnbextension
@@ -95,7 +94,13 @@ COPY ./ops/tracker.jupyterlab-settings /root/.jupyter/lab/user-settings/@jupyter
 #ENV USER_HOME ${user_home}
 RUN echo export PATH=${PATH} >>/root/.zshrc
 
+WORKDIR /
+
+#AWS CLI
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
+  && unzip awscliv2.zip \
+  && ./aws/install
+
 # All servers need be in:
 COPY ./ops/servers.sh /servers.sh
-WORKDIR /
 CMD ["/servers.sh"]

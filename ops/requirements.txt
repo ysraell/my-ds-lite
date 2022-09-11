@@ -13,7 +13,6 @@ jupyterlab_execute_time
 jupyterlab_templates
 jupyternotify
 markdown
-nodejs
 pandas
 pandas-profiling
 simplejson

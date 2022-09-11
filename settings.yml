@@ -2,11 +2,12 @@ variables:
   title: My Data Science Workstation
   description: Docker image with all you need for data science.
   author: Israel Oliveira <prof.israel@gmail.com>
-  version: 2.1.2
+  version: 1.0.0
   PORT_JUPYTERLAB: 8888
   PORT_STREAMLIT: 8501
   PORT_FREE: 8090
   APP_NAME: my-ds-lite
+  CONTAINER_NAME: wslite
   BASE_IMAGE_NAME: python
   BASE_IMAGE_TAG: 3.9-bullseye
   SHM_SIZE: 8g
